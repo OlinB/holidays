@@ -65,15 +65,23 @@ You can also pass a specific year.
 ```php
 use Spatie\Holidays\Holidays;
 
-$holidays = Holidays::for(country: 'be', year: 2024))->get();
+$holidays = Holidays::for(country: 'be', year: 2024)->get();
+```
+
+### Getting holidays between two dates
+
+You can also get all holidays between two dates (inclusive).
+
+```php
+use Spatie\Holidays\Holidays;
+
+$holidays = Holidays::for('be')->getInRange('2023-06-01', '2024-05-31');
 ```
 
 ### Getting holidays in a specific language
 
 ```php
-use Spatie\Holidays\Holidays;
-
-$holidays = Holidays::for(country: 'be', locale: 'fr'))->get();
+$holidays = Holidays::for(country: 'be', locale: 'fr')->get();
 ```
 
 If the locale is not supported for a country, an exception will be thrown.
@@ -125,7 +133,7 @@ In case your country has specific rules for calculating holidays,
 for example region specific holidays, you can pass this to the constructor of your country class.
 
 ```php
-$holidays = Holidays::for(Germany::make(region: 'DE-BW'))->get();
+$holidays = Holidays::for(Germany::make('DE-BW'))->get();
 ```
 
 The value, `DE-BW`, will be passed to the region parameter of the constructor of a country.
